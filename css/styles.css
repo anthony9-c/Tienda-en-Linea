@@ -1,0 +1,98 @@
+/* ===== Variables de diseño (tema claro / oscuro) ===== */
+:root {
+  --accent: #6c3df4;
+  --accent-dark: #5127d1;
+  --accent-2: #00c2a8;
+  --radius: 1rem;
+  --shadow: 0 6px 20px rgba(20, 20, 60, .10);
+  --nav-bg: rgba(255, 255, 255, .85);
+  --footer-bg: #14142b;
+}
+[data-bs-theme="dark"] {
+  --accent: #9b7bff;
+  --accent-dark: #7f5cf0;
+  --shadow: 0 6px 20px rgba(0, 0, 0, .45);
+  --nav-bg: rgba(25, 27, 32, .85);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+
+/* ===== Navegación ===== */
+.app-nav { background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(128,128,128,.2); }
+.text-accent { color: var(--accent); }
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: 2px; width: 0; height: 2px;
+  background: var(--accent); transition: width .3s;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ===== Botón principal ===== */
+.btn-accent {
+  background: var(--accent); color: #fff; border: none;
+  transition: transform .15s, background .2s, box-shadow .2s;
+}
+.btn-accent:hover { background: var(--accent-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(108,61,244,.35); }
+
+/* ===== Hero con degradado y animación ===== */
+.hero {
+  color: #fff;
+  background: linear-gradient(135deg, #3b1fb5, #6c3df4 55%, #00c2a8);
+  background-size: 200% 200%;
+  animation: fondo 12s ease infinite;
+}
+.hero-text { animation: subir .8s ease both; }
+.hero-orb {
+  font-size: 9rem; width: 280px; height: 280px; margin: auto;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(255,255,255,.15); box-shadow: 0 0 60px rgba(255,255,255,.25) inset;
+  animation: flotar 4s ease-in-out infinite;
+}
+@keyframes fondo { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+@keyframes subir { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* ===== Títulos de sección ===== */
+.section-title { font-weight: 700; margin-bottom: 1.5rem; position: relative; padding-bottom: .6rem; }
+.section-title::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 64px; height: 4px;
+  border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+/* ===== Tarjetas de producto ===== */
+.product-card {
+  border: none; border-radius: var(--radius); box-shadow: var(--shadow);
+  overflow: hidden; height: 100%;
+  transition: transform .25s, box-shadow .25s;
+  animation: subir .5s ease both;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(108,61,244,.25); }
+.product-img {
+  display: grid; place-items: center; font-size: 4.5rem; height: 170px;
+  border-radius: calc(var(--radius) - 4px);
+}
+.product-card .product-img { border-radius: 0; cursor: pointer; }
+.price { font-weight: 700; font-size: 1.25rem; color: var(--accent); }
+.badge-cat { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; }
+
+/* ===== Beneficios ===== */
+.feature { padding: 1.5rem; border-radius: var(--radius); background: var(--bs-body-bg); box-shadow: var(--shadow); height: 100%; }
+.feature-icon { font-size: 2.5rem; margin-bottom: .5rem; }
+
+/* ===== Carrito ===== */
+.cart-item { display: grid; grid-template-columns: 56px 1fr auto; gap: .75rem; align-items: center; padding: .75rem 0; border-bottom: 1px solid rgba(128,128,128,.2); }
+.cart-thumb { width: 56px; height: 56px; display: grid; place-items: center; font-size: 1.8rem; border-radius: .75rem; }
+.qty-btn { width: 28px; height: 28px; padding: 0; line-height: 1; }
+
+/* ===== Pie de página ===== */
+.app-footer { background: var(--footer-bg); color: #d7d7ef; }
+
+/* ===== Responsive ===== */
+@media (max-width: 575.98px) {
+  .hero h1 { font-size: 2.1rem; }
+  .product-img { height: 140px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

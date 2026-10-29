@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TechNova: tienda en línea de tecnología y accesorios.">
+  <title>TechNova | Tienda de tecnología</title>
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO / NAVEGACIÓN -->
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top app-nav">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#inicio">⚡ Tech<span class="text-accent">Nova</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button"
+                    aria-label="Cambiar entre modo claro y oscuro">🌙</button>
+            <button class="btn btn-accent position-relative" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#carrito" aria-controls="carrito">
+              🛒 Carrito
+              <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="container py-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7 hero-text">
+            <span class="badge text-bg-light mb-3">Envíos a todo el Perú</span>
+            <h1 class="display-4 fw-bold">La tecnología que necesitas, al mejor precio</h1>
+            <p class="lead">Audífonos, teclados, smartwatches y más. Compra fácil, paga seguro y recibe en casa.</p>
+            <a href="#catalogo" class="btn btn-light btn-lg me-2">Ver catálogo</a>
+            <a href="#contacto" class="btn btn-outline-light btn-lg">Escríbenos</a>
+          </div>
+          <div class="col-lg-5 text-center d-none d-lg-block">
+            <div class="hero-orb" aria-hidden="true">🎧</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo" class="py-5">
+      <div class="container">
+        <h2 class="section-title">Catálogo de productos</h2>
+
+        <form class="row g-2 mb-4" role="search" onsubmit="return false">
+          <div class="col-md-5">
+            <label for="buscador" class="visually-hidden">Buscar producto</label>
+            <input type="search" id="buscador" class="form-control" placeholder="Buscar producto...">
+          </div>
+          <div class="col-md-3">
+            <label for="categoria" class="visually-hidden">Categoría</label>
+            <select id="categoria" class="form-select"></select>
+          </div>
+          <div class="col-md-3">
+            <label for="orden" class="visually-hidden">Ordenar</label>
+            <select id="orden" class="form-select">
+              <option value="default">Ordenar: Destacados</option>
+              <option value="asc">Precio: menor a mayor</option>
+              <option value="desc">Precio: mayor a menor</option>
+              <option value="nombre">Nombre (A-Z)</option>
+            </select>
+          </div>
+          <div class="col-md-1 d-grid">
+            <button id="limpiar" type="button" class="btn btn-outline-secondary">Limpiar</button>
+          </div>
+        </form>
+
+        <p id="contador" class="text-secondary" aria-live="polite"></p>
+        <div id="productos" class="row g-4"></div>
+        <div id="sinResultados" class="alert alert-warning d-none">No se encontraron productos con esos filtros.</div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="py-5 bg-body-tertiary">
+      <div class="container">
+        <h2 class="section-title">¿Por qué comprar en TechNova?</h2>
+        <div class="row g-4 text-center">
+          <div class="col-md-4"><div class="feature"><div class="feature-icon">🚚</div><h3 class="h5">Envío rápido</h3><p>Entrega en 24 a 72 horas en las principales ciudades.</p></div></div>
+          <div class="col-md-4"><div class="feature"><div class="feature-icon">🛡️</div><h3 class="h5">Garantía real</h3><p>12 meses de garantía en todos nuestros productos.</p></div></div>
+          <div class="col-md-4"><div class="feature"><div class="feature-icon">💳</div><h3 class="h5">Pago seguro</h3><p>Tarjeta, Yape, Plin o contra entrega.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-5">
+      <div class="container">
+        <h2 class="section-title">Contáctanos</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <form id="formContacto" novalidate>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" id="nombre" class="form-control" required minlength="3">
+                <div class="invalid-feedback">Ingresa tu nombre (mínimo 3 caracteres).</div>
+              </div>
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" id="correo" class="form-control" required>
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
+              </div>
+              <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje</label>
+                <textarea id="mensaje" rows="4" class="form-control" required minlength="10"></textarea>
+                <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+              </div>
+              <button type="submit" class="btn btn-accent">Enviar mensaje</button>
+              <div id="formOk" class="alert alert-success mt-3 d-none" role="status">¡Gracias! Tu mensaje fue enviado correctamente.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer py-4 text-center">
+    <div class="container">
+      <p class="mb-1">© <span id="anio"></span> TechNova. Proyecto académico — Desarrollo Web, Unidad 1.</p>
+      <small>Universidad Continental · Ingeniería de Sistemas e Informática</small>
+    </div>
+  </footer>
+
+  <!-- CARRITO (offcanvas de Bootstrap) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito" aria-labelledby="carritoTitulo">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="carritoTitulo">Tu carrito</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="carritoItems" class="flex-grow-1"></div>
+      <div class="border-top pt-3">
+        <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+          <span>Total</span><span id="carritoTotal">S/ 0.00</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button id="btnComprar" class="btn btn-accent" type="button">Finalizar compra</button>
+          <button id="btnVaciar" class="btn btn-outline-danger" type="button">Vaciar carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DETALLE DE PRODUCTO -->
+  <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="modalTitulo"></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div id="modalImg" class="product-img mb-3"></div>
+          <p id="modalDesc"></p>
+          <p class="fw-bold fs-4 text-accent mb-0" id="modalPrecio"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-accent" id="modalAgregar">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast align-items-center text-bg-dark border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMsg"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
